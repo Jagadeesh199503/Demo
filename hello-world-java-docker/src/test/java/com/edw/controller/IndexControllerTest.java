@@ -5,22 +5,24 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class IndexControllerTest {
 
     @Test
     void index_ReturnsExpectedMap() {
         // Arrange
-        Map<String, Object> expectedResponse = Map.of(
-                "success", true,
-                "hello", "world",
-                "new-message", "adding a new msg"
-        );
+        IndexController indexController = new IndexController();
 
         // Act
-        Map<String, Object> actualResponse = new IndexController().index();
+        Map<String, Object> actualResponse = indexController.index();
 
         // Assert
-        assertEquals(expectedResponse, actualResponse);
+        assertTrue(actualResponse.containsKey("success"));
+        assertTrue(actualResponse.containsKey("hello"));
+        assertTrue(actualResponse.containsKey("new-message"));
+        assertEquals(true, actualResponse.get("success"));
+        assertEquals("world", actualResponse.get("hello"));
+        assertEquals("adding a new msg", actualResponse.get("new-message"));
     }
 }
