@@ -6,19 +6,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class IndexController {
-    private static Logger logger = LoggerFactory.getLogger(IndexController.class);
+    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @GetMapping("/")
-    public static HashMap index() {
-        logger.debug("request served");
+    public Map<String, Object> index() {
+        logger.debug("Request served");
 
-        return new HashMap<>() {{
-            put("success", true);
-            put("hello", "world");
-            put("new-message", "adding a new msg");
-        }};
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", true);
+        response.put("hello", "world");
+        response.put("new-message", "Adding a new message");
+
+        return response;
     }
 }
