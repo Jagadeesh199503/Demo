@@ -2,22 +2,25 @@ package com.edw.controller;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
+import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-class IndexControllerTest{
+class IndexControllerTest {
 
     @Test
-    void IndexControllertest(){
-        HashMap<String, Object> expResponse = new HashMap<>();
-        expResponse.put("success", true);
-        expResponse.put("hello", "world");
-        expResponse.put("new-message", "adding a new msg");
+    void index_ReturnsExpectedMap() {
+        // Arrange
+        Map<String, Object> expectedResponse = Map.of(
+                "success", true,
+                "hello", "world",
+                "new-message", "adding a new msg"
+        );
 
-        HashMap actualResponse = IndexController.index();
-        assertEquals(expResponse, actualResponse);
+        // Act
+        Map<String, Object> actualResponse = new IndexController().index();
 
+        // Assert
+        assertEquals(expectedResponse, actualResponse);
     }
 }
